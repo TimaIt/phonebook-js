@@ -1,0 +1,55 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-image: url(../image/mobile_bg.png);
+}
+section {
+  background: linear-gradient(162deg, #a79f9f, white, rgb(93 175 223));
+  padding: 50px 0;
+}
+.title {
+  text-align: center;
+  text-transform: uppercase;
+}
+hr {
+  width: 30%;
+  height: 1px;
+  margin: 0 auto;
+  background-color: #000;
+}
+form {
+  padding: 20px 10px;
+  display: flex;
+  gap: 10px;
+  border-radius: 5px;
+  flex-direction: column;
+  background-color: silver;
+  width: 400px;
+  height: 300px;
+  margin: 0 auto;
+  justify-content: center;
+}
+label {
+  font-size: 20px;
+  font-weight: bolder;
+}
+.input {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  border: solid 1px #000;
+  width: 350px;
+}
+.btn {
+  width: 30%;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+  font-size: 15px;
+  background: linear-gradient(120deg, blue, red, green);
+}
