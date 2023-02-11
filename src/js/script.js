@@ -35,7 +35,7 @@ form.addEventListener("submit", (e) => {
     text.appendChild(span);
   });
 });
-
+//!commit
 function addContacts() {
   data.forEach((item) => {
     if (item.name === newContact.name) {
