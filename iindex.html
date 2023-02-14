@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 400px;
+        padding: 20px 10px;
+        margin: 0 auto;
+        margin-bottom: 20px;
+        flex-direction: column;
+        width: 400px;
+        height: 300px;
+        background-color: silver;
+      }
+      input {
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: solid 1px #000;
+      }
+      button {
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        color: #fff;
+        font-weight: bold;
+        font-size: 15px;
+        background: orangered;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <input id="input1" placeholder="Enter name" />
+      <input id="input2" placeholder="Enter phone number" />
+      <button id="submit">Submit</button>
+    </div>
+    <div class="wrapper">
+      <button id="clear">Clear</button>
+      <input id="search" placeholder="Search" />
+      <div id="output"></div>
+    </div>
+  </body>
+  <script>
+    let input1 = document.getElementById("input1");
+    let input2 = document.getElementById("input2");
+    let submit = document.getElementById("submit");
+    let clear = document.getElementById("clear");
+    let search = document.getElementById("search");
+    let output = document.getElementById("output");
+    let users = [];
+
+    submit.addEventListener("click", function () {
+      CreateObject();
+      CheckInput();
+    });
+
+    clear.addEventListener("click", function () {
+      ClearOutput();
+    });
+
+    search.addEventListener("input", function () {
+      SearchUsers();
+    });
+
+    class Phonebook {
+      constructor(object) {
+        this.name = object.name;
+        this.phone = object.phone;
+      }
+
+      getUserContainer() {
+        return `<div class="outputContent">
+                <p>${this.name} : ${this.phone}</p>
+                <button class="delete">Delete</button>
+                </div>`;
+      }
+    }
+
+    function CreateObject() {
+      let user = new Phonebook({
+        name: input1.value,
+        phone: input2.value,
+      });
+      output.insertAdjacentHTML("beforeend", user.getUserContainer());
+
+      let deleteButton = output.lastChild.querySelector(".delete");
+      deleteButton.addEventListener("click", function () {
+        output.removeChild(output.lastChild);
+      });
+
+      users.push(user);
+    }
+
+    function CheckInput() {
+      if (input1.value == "" || input2.value == "") {
+        alert("Please enter name or phone number");
+      }
+    }
+
+    function ClearOutput() {
+      output.innerHTML = "";
+    }
+
+    function SearchUsers() {
+      ClearOutput();
+      let searchTerm = search.value.toLowerCase();
+      for (let i = 0; i < users.length; i++) {
+        let user = users[i];
+        if (
+          user.name.toLowerCase().includes(searchTerm) ||
+          user.phone.includes(searchTerm)
+        ) {
+          output.insertAdjacentHTML("beforeend", user.getUserContainer());
+        }
+      }
+    }
+  </script>
+</html>
